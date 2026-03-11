@@ -3,6 +3,8 @@ import SmeeClient from "smee-client";
 
 const WEBHOOK_PROXY_URL = "https://smee.io/3zN8KbWuTAkjCjR";
 const app = express();
+app.use(express.urlencoded({ extended: true }));
+
 const PORT = 3000;
 
 const smee = new SmeeClient({
@@ -22,7 +24,11 @@ app.get("/", (req, res) => {
 });
 
 app.post("/webhook", (req, res) => {
-  const payload = req.body;
+  let payload = req.body;
+
+  if (typeof req.body.payload === "string") {
+    payload = JSON.parse(req.body.payload); // ✅ Décode le vrai payload
+  }
 
   const branch = payload.ref ?? "inconnue";
   const repository = payload.repository?.full_name ?? "inconnu";
