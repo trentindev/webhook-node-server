@@ -1,7 +1,7 @@
 {
   "ref": "refs/heads/main",
   "repository": {
-    "full_name": "trentindev/webhook_demo"
+    "full_name": "trentindev/webhook_node_server"
   },
   "pusher": {
     "name": "trentindev"
