@@ -27,7 +27,7 @@ app.post("/webhook", (req, res) => {
   let payload = req.body;
 
   if (typeof req.body.payload === "string") {
-    payload = JSON.parse(req.body.payload); // ✅ Décode le vrai payload
+    payload = JSON.parse(req.body.payload);
   }
 
   const branch = payload.ref ?? "inconnue";
