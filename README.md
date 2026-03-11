@@ -19,4 +19,5 @@ Ce type de mécanisme est très utilisé dans les architectures DevOps et CI/CD 
 
 Node.js
 Express.js
-cURL pour les tests HTTP
+
+## Test Smee
