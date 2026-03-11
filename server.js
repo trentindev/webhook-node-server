@@ -1,7 +1,15 @@
 import express from "express";
-
+const WEBHOOK_PROXY_URL = "https://smee.io/3zN8KbWuTAkjCjR"; // A déplacer dans un .env pour plus de sécurité
 const app = express();
 const PORT = 3000;
+const SmeeClient = require("smee-client");
+const smee = new SmeeClient({
+  source: WEBHOOK_PROXY_URL,
+  target: "http://localhost:3000/events",
+  logger: console,
+});
+
+const events = smee.start();
 
 app.use(express.json());
 
@@ -34,3 +42,6 @@ app.post("/webhook", (req, res) => {
 app.listen(PORT, () => {
   console.log(`Serveur en écoute sur http://localhost:${PORT}`);
 });
+
+// Stop forwarding events
+events.close();
